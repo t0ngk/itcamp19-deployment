@@ -4,3 +4,5 @@
 [submodule "register"]
 	path = register
 	url = https://github.com/SupakornNetsuwan/itcamp19-register
+[submodule "register/"]
+	branch = newtheme
