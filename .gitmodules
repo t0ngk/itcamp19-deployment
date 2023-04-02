@@ -1,0 +1,6 @@
+[submodule "landing"]
+	path = landing
+	url = https://github.com/SupakornNetsuwan/itcamp19-landing
+[submodule "register"]
+	path = register
+	url = https://github.com/SupakornNetsuwan/itcamp19-register
