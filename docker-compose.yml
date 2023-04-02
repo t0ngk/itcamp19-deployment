@@ -1,0 +1,36 @@
+version: '1.0'
+services:
+  proxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+    environment:
+      DB_SQLITE_FILE: "/data/database.sqlite"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+  landing:
+    build: ./landing
+    ports:
+      - "3001:3001"
+  register:
+    extends:
+      file: ./register/docker-compose.production.yml
+      service: website
+  mysql:
+    extends:
+      file: ./register/docker-compose.production.yml
+      service: mysql
+  phpmyadmin:
+    extends:
+      file: ./register/docker-compose.production.yml
+      service: phpmyadmin
+volumes:
+  db-volume:
+  upload-volume:
+networks:
+  app-bridge:
+    driver: bridge
